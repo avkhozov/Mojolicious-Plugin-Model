@@ -1,23 +1,39 @@
-# Mojolicious-Plugin-Model
-# NAME
+package Mojolicious::Plugin::Model;
+use 5.008001;
+use strict;
+use warnings;
+
+our $VERSION = "0.01";
+
+
+
+1;
+__END__
+
+=encoding utf-8
+
+=head1 NAME
 
 Mojolicious::Plugin::Model - It's new $module
 
-# SYNOPSIS
+=head1 SYNOPSIS
 
     use Mojolicious::Plugin::Model;
 
-# DESCRIPTION
+=head1 DESCRIPTION
 
 Mojolicious::Plugin::Model is ...
 
-# LICENSE
+=head1 LICENSE
 
 Copyright (C) Andrey Khozov.
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself.
 
-# AUTHOR
+=head1 AUTHOR
 
-Andrey Khozov <avkhozov@gmail.com>
+Andrey Khozov E<lt>avkhozov@gmail.comE<gt>
+
+=cut
+
