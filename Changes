@@ -2,5 +2,6 @@ Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
 
-    - original version
+0.01 2015-02-24T10:16:31Z
 
+    - First release.
