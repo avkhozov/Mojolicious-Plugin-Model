@@ -104,7 +104,7 @@ model has an C<app> attribute.
 
 =head1 HELPERS
 
-L<Mojolicious::Plugin::DefaultHelpers> implements the following helpers.
+L<Mojolicious::Plugin::Model> implements the following helpers.
 
 =head2 model
 

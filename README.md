@@ -55,7 +55,7 @@ model has an `app` attribute.
 
 # HELPERS
 
-[Mojolicious::Plugin::DefaultHelpers](https://metacpan.org/pod/Mojolicious::Plugin::DefaultHelpers) implements the following helpers.
+[Mojolicious::Plugin::Model](https://metacpan.org/pod/Mojolicious::Plugin::Model) implements the following helpers.
 
 ## model
 
