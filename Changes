@@ -1,6 +1,8 @@
 Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
+
+0.02 2015-03-03T08:38:06Z
     - Added namespace option.
 
 0.01 2015-02-24T10:16:31Z
