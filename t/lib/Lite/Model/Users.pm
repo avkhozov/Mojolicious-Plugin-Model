@@ -8,4 +8,8 @@ sub check {
   return $allow;
 }
 
+sub name {
+  return 'name';
+}
+
 1;

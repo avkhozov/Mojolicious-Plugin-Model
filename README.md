@@ -26,6 +26,17 @@ Model Users
 
     1;
 
+Model Users-Client
+
+    package MyApp::Model::Users::Client;
+    use Mojo::Base 'MyApp::Model::User';
+
+    sub do {
+      my ($self) = @_;
+    }
+
+    1;
+
 Mojolicious::Lite application
 
     #!/usr/bin/env perl
@@ -42,6 +53,10 @@ Mojolicious::Lite application
       my $user = $c->param('user') || '';
       my $pass = $c->param('pass') || '';
 
+      # client model
+      my $client = $c->model('users-client');
+      $client->do();
+
       return $c->render(text => "Welcome $user.") if $c->model('users')->check($user, $pass);
       $c->render(text => 'Wrong username or password.');
     };
@@ -52,6 +67,17 @@ Mojolicious::Lite application
 
 [Mojolicious::Plugin::Model](https://metacpan.org/pod/Mojolicious::Plugin::Model) is a Model (M in MVC architecture) for Mojolicious applications. Each
 model has an `app` attribute.
+
+# OPTIONS
+
+[Mojolicious::Plugin::Model](https://metacpan.org/pod/Mojolicious::Plugin::Model) supports the following options.
+
+## namespace
+
+    # Mojolicious::Lite
+    plugin Model => {namespace => 'MyApp::Controller::Module'};
+
+Namespace for model classes. Default to `$moniker::Model`.
 
 # HELPERS
 

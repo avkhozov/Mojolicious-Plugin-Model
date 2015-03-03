@@ -9,11 +9,13 @@ our $VERSION = '0.01';
 has models => sub { {} };
 
 sub register {
-  my ($plugin, $app) = @_;
+  my ($plugin, $app, $conf) = @_;
 
-  my $app_name = camelize $app->moniker;
-  eval <<"CODE";
-package ${app_name}::Model;
+  my $moniker = camelize $app->moniker;
+  my $base = $conf->{namespace} // "${moniker}::Model";
+
+  eval <<CODE;
+package $base;
 use Mojo::Base -base;
 has 'app';
 1;
@@ -25,10 +27,10 @@ CODE
 
       return $_ if $_ = $plugin->models->{$name};
 
-      my $class = sprintf '%s::Model::%s', $app_name, camelize $name;
+      my $class = sprintf '%s::%s', $base, camelize $name;
       eval "require $class";
       if ($@) {
-        $app->log->error("[Model] Error while loading $name ($class): $@");
+        $app->log->error("[Mojolicious::Plugin::Model] Error while loading $name ($class): $@");
         return undef;
       }
 
@@ -74,6 +76,17 @@ Model Users
 
   1;
 
+Model Users-Client
+
+  package MyApp::Model::Users::Client;
+  use Mojo::Base 'MyApp::Model::User';
+
+  sub do {
+    my ($self) = @_;
+  }
+
+  1;
+
 Mojolicious::Lite application
 
   #!/usr/bin/env perl
@@ -90,17 +103,31 @@ Mojolicious::Lite application
     my $user = $c->param('user') || '';
     my $pass = $c->param('pass') || '';
 
+    # client model
+    my $client = $c->model('users-client');
+    $client->do();
+
     return $c->render(text => "Welcome $user.") if $c->model('users')->check($user, $pass);
     $c->render(text => 'Wrong username or password.');
   };
 
   app->start;
 
-
 =head1 DESCRIPTION
 
 L<Mojolicious::Plugin::Model> is a Model (M in MVC architecture) for Mojolicious applications. Each
 model has an C<app> attribute.
+
+=head1 OPTIONS
+
+L<Mojolicious::Plugin::Model> supports the following options.
+
+=head2 namespace
+
+  # Mojolicious::Lite
+  plugin Model => {namespace => 'MyApp::Controller::Module'};
+
+Namespace for model classes. Default to C<$moniker::Model>.
 
 =head1 HELPERS
 
