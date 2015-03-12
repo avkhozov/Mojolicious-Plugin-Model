@@ -10,10 +10,11 @@ plugin Model => {namespace => 'Lite::Model'};
 get '/' => sub {
   my $c = shift;
 
-  $c->render(text => $c->model('users')->name());
+  $_ = 'test';
+  $c->render(text => $c->model('users')->name($_));
 };
 
 my $t = Test::Mojo->new;
-$t->get_ok('/')->status_is(200)->content_is('name');
+$t->get_ok('/')->status_is(200)->content_is('test');
 
 done_testing;

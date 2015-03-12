@@ -1,6 +1,7 @@
 Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
+    - Fixed bug with redefine $_.
 
 0.02 2015-03-03T08:38:06Z
     - Added namespace option.

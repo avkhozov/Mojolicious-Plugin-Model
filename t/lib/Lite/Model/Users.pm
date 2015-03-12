@@ -9,7 +9,7 @@ sub check {
 }
 
 sub name {
-  return 'name';
+  return $_[1] // 'name';
 }
 
 1;

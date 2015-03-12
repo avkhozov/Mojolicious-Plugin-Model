@@ -25,7 +25,8 @@ CODE
     model => sub {
       my ($self, $name) = @_;
 
-      return $_ if $_ = $plugin->models->{$name};
+      my $model;
+      return $model if $model = $plugin->models->{$name};
 
       my $class = sprintf '%s::%s', $base, camelize $name;
       eval "require $class";
@@ -34,7 +35,7 @@ CODE
         return undef;
       }
 
-      my $model = $class->new(app => $app);
+      $model = $class->new(app => $app);
       weaken $model->{app};
 
       $plugin->models->{$name} = $model;
