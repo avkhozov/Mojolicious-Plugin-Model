@@ -4,7 +4,7 @@ use Mojo::Base 'Mojolicious::Plugin';
 use Mojo::Util 'camelize';
 use Scalar::Util 'weaken';
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 has models => sub { {} };
 
