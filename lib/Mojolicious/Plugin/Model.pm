@@ -20,7 +20,7 @@ sub register {
     model => sub {
       my ($self, $name) = @_;
 
-      $name = camelize($name);
+      $name = camelize($name) if $name =~ /^[a-z]/;
 
       my $model;
       return $model if $model = $plugin->models->{$name};
