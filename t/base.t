@@ -5,7 +5,7 @@ use Test::Mojo;
 use Test::More;
 
 use lib 't/lib';
-plugin Model => {namespace => 'Lite::Model'};
+plugin Model => {namespaces => ['Lite::Model']};
 
 get '/' => sub {
   my $c = shift;
