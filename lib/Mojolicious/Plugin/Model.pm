@@ -1,6 +1,8 @@
 package Mojolicious::Plugin::Model;
 use Mojo::Base 'Mojolicious::Plugin';
 
+use List::Util 'first';
+use Mojo::Loader ();
 use Mojo::Util 'camelize';
 use Scalar::Util 'weaken';
 
@@ -11,38 +13,51 @@ has models => sub { {} };
 sub register {
   my ($plugin, $app, $conf) = @_;
 
-  my $moniker = camelize $app->moniker;
-  my $base = $conf->{namespace} // "${moniker}::Model";
-
-  eval <<CODE;
-package $base;
-use Mojo::Base -base;
-has 'app';
-1;
-CODE
+  my $ns   = $conf->{namespaces}   // [camelize($app->moniker) . '::Model'];
+  my $base = $conf->{base_classes} // [qw(MojoX::Model)];
 
   $app->helper(
     model => sub {
       my ($self, $name) = @_;
 
+      $name = camelize($name) if $name =~ /^[a-z]/;
+
       my $model;
       return $model if $model = $plugin->models->{$name};
 
-      my $class = sprintf '%s::%s', $base, camelize $name;
-      eval "require $class";
-      if ($@) {
-        $app->log->error("[Mojolicious::Plugin::Model] Error while loading $name ($class): $@");
-        return undef;
+      for my $class (map { "${_}::$name" } @$ns) {
+        next unless _load_class($class);
+
+        unless (first { $class->isa($_) } @$base) {
+          $app->log->debug(qq[Class "$class" is not a model]);
+          next;
+        }
+
+        $model = $class->new(app => $app);
+        weaken $model->{app};
+
+        $plugin->models->{$name} = $model;
+        return $model;
       }
 
-      $model = $class->new(app => $app);
-      weaken $model->{app};
-
-      $plugin->models->{$name} = $model;
-      return $model;
+      $app->log->debug(qq[Model "$name" does not exists]);
+      return undef;
     }
   );
 }
+
+sub _load_class {
+  my ($class) = @_;
+
+  my $error = Mojolicious->VERSION < 6
+    ? Mojo::Loader->new->load($class)
+    : Mojo::Loader::load_class($class);
+
+  return 1 unless $error;
+  die($error) if ref($error);
+  return;
+}
+
 
 1;
 
@@ -59,7 +74,7 @@ Mojolicious::Plugin::Model - Model for Mojolicious applications
 Model Users
 
   package MyApp::Model::Users;
-  use Mojo::Base 'MyApp::Model';
+  use Mojo::Base 'MojoX::Model';
 
   sub check {
     my ($self, $name, $pass) = @_;
@@ -123,12 +138,19 @@ model has an C<app> attribute.
 
 L<Mojolicious::Plugin::Model> supports the following options.
 
-=head2 namespace
+=head2 namespaces
 
   # Mojolicious::Lite
-  plugin Model => {namespace => 'MyApp::Controller::Module'};
+  plugin Model => {namespaces => ['MyApp::Model']};
 
-Namespace for model classes. Default to C<$moniker::Model>.
+Namespace to load models from, defaults to C<$moniker::Model>.
+
+=head2 base_classes
+
+  # Mojolicious::Lite
+  plugin Model => {base_classes => ['MyApp::Model']};
+
+Base classes used to identify models, defaults to L<MojoX::Model>.
 
 =head1 HELPERS
 

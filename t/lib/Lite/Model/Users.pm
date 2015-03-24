@@ -1,5 +1,5 @@
 package Lite::Model::Users;
-use Mojo::Base 'Lite::Model';
+use Mojo::Base 'MojoX::Model';
 
 sub check {
   my ($self, $name) = @_;

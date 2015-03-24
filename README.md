@@ -8,7 +8,7 @@ Mojolicious::Plugin::Model - Model for Mojolicious applications
 Model Users
 
     package MyApp::Model::Users;
-    use Mojo::Base 'MyApp::Model';
+    use Mojo::Base 'MojoX::Model';
 
     sub check {
       my ($self, $name, $pass) = @_;
@@ -75,7 +75,7 @@ model has an `app` attribute.
 ## namespace
 
     # Mojolicious::Lite
-    plugin Model => {namespace => 'MyApp::Controller::Module'};
+    plugin Model => {namespaces => ['MyApp::Controller::Module']};
 
 Namespace for model classes. Default to `$moniker::Model`.
 
