@@ -16,16 +16,16 @@ MojoX::Model - Model base class
 
 =head1 SYNOPSIS
 
-    # Model
-    package App::Model::Foo;
-    use Mojo::Base 'MojoX::Model';
+  # Model
+  package App::Model::Foo;
+  use Mojo::Base 'MojoX::Model';
 
-    sub do {
-        # Do something.
-    }
+  sub do {
+    # Do something.
+  }
 
-    # Application
-    $self->model('Foo')->do();
+  # Application
+  $self->model('Foo')->do();
 
 =head1 DESCRIPTION
 

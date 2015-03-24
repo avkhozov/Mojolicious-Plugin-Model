@@ -72,12 +72,19 @@ model has an `app` attribute.
 
 [Mojolicious::Plugin::Model](https://metacpan.org/pod/Mojolicious::Plugin::Model) supports the following options.
 
-## namespace
+## namespaces
 
     # Mojolicious::Lite
-    plugin Model => {namespaces => ['MyApp::Controller::Module']};
+    plugin Model => {namespaces => ['MyApp::Model']};
 
-Namespace for model classes. Default to `$moniker::Model`.
+Namespace to load models from, defaults to `$moniker::Model`.
+
+## base\_classes
+
+    # Mojolicious::Lite
+    plugin Model => {base_classes => ['MyApp::Model']};
+
+Base classes used to identify models, defaults to [MojoX::Model](https://metacpan.org/pod/MojoX::Model).
 
 # HELPERS
 
@@ -107,6 +114,10 @@ Register plugin in [Mojolicious](https://metacpan.org/pod/Mojolicious) applicati
 # AUTHOR
 
 Andrey Khozov, `avkhozov@googlemail.com`.
+
+# CREDITS
+
+Denis Ibaev, `dionys@gmail.com`.
 
 # COPYRIGHT AND LICENSE
 

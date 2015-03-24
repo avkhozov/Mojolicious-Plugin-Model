@@ -6,7 +6,7 @@ use Mojo::Loader ();
 use Mojo::Util 'camelize';
 use Scalar::Util 'weaken';
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 has models => sub { {} };
 
@@ -47,17 +47,14 @@ sub register {
 }
 
 sub _load_class {
-  my ($class) = @_;
+  my $class = shift;
 
-  my $error = Mojolicious->VERSION < 6
-    ? Mojo::Loader->new->load($class)
-    : Mojo::Loader::load_class($class);
+  my $error = Mojolicious->VERSION < 6 ? Mojo::Loader->new->load($class) : Mojo::Loader::load_class($class);
 
   return 1 unless $error;
-  die($error) if ref($error);
+  die $error if ref $error;
   return;
 }
-
 
 1;
 
@@ -180,6 +177,10 @@ L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicio.us>.
 =head1 AUTHOR
 
 Andrey Khozov, C<avkhozov@googlemail.com>.
+
+=head1 CREDITS
+
+Denis Ibaev, C<dionys@gmail.com>.
 
 =head1 COPYRIGHT AND LICENSE
 

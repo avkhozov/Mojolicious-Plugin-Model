@@ -2,6 +2,10 @@ Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
 
+0.04 2015-03-24T04:50:51Z
+    - Replaced namespace option with namespaces. (dionys)
+    - Added model base class MojoX::Model and base_classes option. (dionys)
+
 0.03 2015-03-12T11:12:42Z
     - Fixed bug with redefine $_.
 
