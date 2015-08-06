@@ -20,6 +20,7 @@ sub register {
     model => sub {
       my ($self, $name) = @_;
 
+      $name = $conf->{default} unless defined($name);
       $name = camelize($name) if $name =~ /^[a-z]/;
 
       my $model;
@@ -148,6 +149,20 @@ Namespace to load models from, defaults to C<$moniker::Model>.
   plugin Model => {base_classes => ['MyApp::Model']};
 
 Base classes used to identify models, defaults to L<MojoX::Model>.
+
+=head2 default
+
+  # Mojolicious::Lite
+  plugin Model => {default => 'MyModel'};
+
+  any '/' => sub {
+    my $c = shift();
+    $c->model->do(); # used model MyModel
+    # ...
+  }
+
+The name of the default model to use if the name of the current model not
+specified.
 
 =head1 HELPERS
 
