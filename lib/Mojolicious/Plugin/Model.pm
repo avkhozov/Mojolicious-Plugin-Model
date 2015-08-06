@@ -4,7 +4,6 @@ use Mojo::Base 'Mojolicious::Plugin';
 use List::Util 'first';
 use Mojo::Loader ();
 use Mojo::Util 'camelize';
-use Scalar::Util 'weaken';
 
 our $VERSION = '0.04';
 
@@ -34,7 +33,6 @@ sub register {
         }
 
         $model = $class->new(app => $app);
-        weaken $model->{app};
 
         $plugin->models->{$name} = $model;
         return $model;

@@ -1,8 +1,19 @@
 package MojoX::Model;
 
-use Mojo::Base -base;
+use strict;
+use warnings;
 
-has app => undef;
+use Scalar::Util 'weaken';
+
+use base 'Mojo::Base';
+
+__PACKAGE__->attr(app => undef);
+
+sub new {
+  my $self = shift()->SUPER::new(@_);
+  weaken($self->{app}) if ref($self->{app});
+  return $self;
+}
 
 1;
 
