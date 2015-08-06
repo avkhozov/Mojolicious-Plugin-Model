@@ -47,7 +47,7 @@ sub register {
 sub _load_class {
   my $class = shift;
 
-  my $error = Mojolicious->VERSION < 6 ? Mojo::Loader->new->load($class) : Mojo::Loader::load_class($class);
+  my $error = Mojo::Loader->can('new') ? Mojo::Loader->new->load($class) : Mojo::Loader::load_class($class);
 
   return 1 unless $error;
   die $error if ref $error;
