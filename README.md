@@ -86,6 +86,13 @@ Namespace to load models from, defaults to `$moniker::Model`.
 
 Base classes used to identify models, defaults to [MojoX::Model](https://metacpan.org/pod/MojoX::Model).
 
+## Model name
+
+    # Mojolicious::Lite
+    plugin Model => {DBI => {dsn => 'dbi:mysql:mydb'}};
+
+Parameters to be passed to the class constructor of the model.
+
 # HELPERS
 
 [Mojolicious::Plugin::Model](https://metacpan.org/pod/Mojolicious::Plugin::Model) implements the following helpers.
