@@ -4,7 +4,6 @@ use Mojo::Base 'Mojolicious::Plugin';
 use List::Util 'first';
 use Mojo::Loader ();
 use Mojo::Util 'camelize';
-use Scalar::Util 'weaken';
 
 our $VERSION = '0.04';
 
@@ -33,12 +32,7 @@ sub register {
           next;
         }
 
-        $model = $class->new(
-          ref($conf->{$name}) eq 'HASH' ? %{$conf->{$name}} : (),
-          app => $app
-        );
-        weaken $model->{app};
-
+        $model = $class->new(ref($conf->{$name}) eq 'HASH' ? %{$conf->{$name}} : (), app => $app);
         $plugin->models->{$name} = $model;
         return $model;
       }
@@ -52,7 +46,7 @@ sub register {
 sub _load_class {
   my $class = shift;
 
-  my $error = Mojolicious->VERSION < 6 ? Mojo::Loader->new->load($class) : Mojo::Loader::load_class($class);
+  my $error = Mojo::Loader->can('new') ? Mojo::Loader->new->load($class) : Mojo::Loader::load_class($class);
 
   return 1 unless $error;
   die $error if ref $error;
