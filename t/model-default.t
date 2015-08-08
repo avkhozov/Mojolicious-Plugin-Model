@@ -8,10 +8,7 @@ use Mojolicious::Lite;
 
 my $v;
 
-plugin 'Model' => {
-  namespaces => ['Local'],
-  default    => 'MyModel',
-};
+plugin 'Model' => {namespaces => ['Local'], default => 'MyModel'};
 
 get '/' => sub {
   my $c = shift();

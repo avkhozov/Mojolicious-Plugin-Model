@@ -63,6 +63,18 @@ Mojolicious::Lite application
 
     app->start;
 
+All available options
+
+\#!/usr/bin/env perl
+use Mojolicious::Lite;
+
+plugin Model => {
+  namespaces   => \['MyApp::Model', 'MyApp::CLI::Model'\],
+  base\_classes => \['MyApp::Model'\],
+  default      => 'MyApp::Model::Pg',
+  params => {Pg => {uri => 'postgresql://user@/mydb'}}
+};
+
 # DESCRIPTION
 
 [Mojolicious::Plugin::Model](https://metacpan.org/pod/Mojolicious::Plugin::Model) is a Model (M in MVC architecture) for Mojolicious applications. Each
@@ -100,10 +112,10 @@ Base classes used to identify models, defaults to [MojoX::Model](https://metacpa
 The name of the default model to use if the name of the current model not
 specified.
 
-## parameters for models
+## params
 
     # Mojolicious::Lite
-    plugin Model => {DBI => {dsn => 'dbi:mysql:mydb'}};
+    plugin Model => {params => {DBI => {dsn => 'dbi:mysql:mydb'}}};
 
 Parameters to be passed to the class constructor of the model.
 

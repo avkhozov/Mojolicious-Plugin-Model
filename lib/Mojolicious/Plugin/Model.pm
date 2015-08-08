@@ -33,7 +33,8 @@ sub register {
           next;
         }
 
-        $model = $class->new(ref($conf->{$name}) eq 'HASH' ? %{$conf->{$name}} : (), app => $app);
+        $model =
+          $class->new(ref($conf->{params}{$name}) eq 'HASH' ? %{$conf->{params}{$name}} : (), app => $app);
         $plugin->models->{$name} = $model;
         return $model;
       }
@@ -124,6 +125,18 @@ Mojolicious::Lite application
 
   app->start;
 
+All available options
+
+#!/usr/bin/env perl
+use Mojolicious::Lite;
+
+plugin Model => {
+  namespaces   => ['MyApp::Model', 'MyApp::CLI::Model'],
+  base_classes => ['MyApp::Model'],
+  default      => 'MyApp::Model::Pg',
+  params => {Pg => {uri => 'postgresql://user@/mydb'}}
+};
+
 =head1 DESCRIPTION
 
 L<Mojolicious::Plugin::Model> is a Model (M in MVC architecture) for Mojolicious applications. Each
@@ -161,10 +174,10 @@ Base classes used to identify models, defaults to L<MojoX::Model>.
 The name of the default model to use if the name of the current model not
 specified.
 
-=head2 parameters for models
+=head2 params
 
   # Mojolicious::Lite
-  plugin Model => {DBI => {dsn => 'dbi:mysql:mydb'}};
+  plugin Model => {params => {DBI => {dsn => 'dbi:mysql:mydb'}}};
 
 Parameters to be passed to the class constructor of the model.
 
