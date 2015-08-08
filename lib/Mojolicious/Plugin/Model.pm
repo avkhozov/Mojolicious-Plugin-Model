@@ -33,7 +33,10 @@ sub register {
           next;
         }
 
-        $model = $class->new(app => $app);
+        $model = $class->new(
+          ref($conf->{$name}) eq 'HASH' ? %{$conf->{$name}} : (),
+          app => $app
+        );
         weaken $model->{app};
 
         $plugin->models->{$name} = $model;
@@ -149,6 +152,13 @@ Namespace to load models from, defaults to C<$moniker::Model>.
 
 Base classes used to identify models, defaults to L<MojoX::Model>.
 
+=head2 Model name
+
+  # Mojolicious::Lite
+  plugin Model => {DBI => {dsn => 'dbi:mysql:mydb'}};
+
+Parameters to be passed to the class constructor of the model.
+
 =head1 HELPERS
 
 L<Mojolicious::Plugin::Model> implements the following helpers.
@@ -178,7 +188,7 @@ L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicio.us>.
 
 Andrey Khozov, C<avkhozov@googlemail.com>.
 
-=head1 CREDITS
+=head1 CONTRIBUTORS
 
 Denis Ibaev, C<dionys@gmail.com>.
 
