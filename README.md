@@ -65,15 +65,15 @@ Mojolicious::Lite application
 
 All available options
 
-\#!/usr/bin/env perl
-use Mojolicious::Lite;
+    #!/usr/bin/env perl
+    use Mojolicious::Lite;
 
-plugin Model => {
-  namespaces   => \['MyApp::Model', 'MyApp::CLI::Model'\],
-  base\_classes => \['MyApp::Model'\],
-  default      => 'MyApp::Model::Pg',
-  params => {Pg => {uri => 'postgresql://user@/mydb'}}
-};
+    plugin Model => {
+      namespaces   => ['MyApp::Model', 'MyApp::CLI::Model'],
+      base_classes => ['MyApp::Model'],
+      default      => 'MyApp::Model::Pg',
+      params => {Pg => {uri => 'postgresql://user@/mydb'}}
+    };
 
 # DESCRIPTION
 
