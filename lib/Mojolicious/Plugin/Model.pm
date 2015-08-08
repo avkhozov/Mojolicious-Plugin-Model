@@ -5,7 +5,7 @@ use List::Util 'first';
 use Mojo::Loader ();
 use Mojo::Util 'camelize';
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 has models => sub { {} };
 

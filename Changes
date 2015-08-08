@@ -2,6 +2,10 @@ Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
 
+0.05 2015-08-08T10:16:02Z
+    - Added support of model parameters. (dionys, avkhozov)
+    - Added support of default model. (dionys)
+
 0.04 2015-03-24T04:50:51Z
     - Replaced namespace option with namespaces. (dionys)
     - Added model base class MojoX::Model and base_classes option. (dionys)
