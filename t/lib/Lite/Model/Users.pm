@@ -1,6 +1,8 @@
 package Lite::Model::Users;
 use Mojo::Base 'MojoX::Model';
 
+sub get { shift->new(@_) }
+
 sub check {
   my ($self, $name) = @_;
 
