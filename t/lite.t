@@ -22,4 +22,10 @@ my $t = Test::Mojo->new;
 $t->get_ok('/?name=u1')->status_is(200)->content_is('Hi u1!');
 $t->get_ok('/?name=qq')->status_is(200)->content_is('Hi');
 
+my $user;
+$user = $t->app->model('users')->get({a => 1});
+isa_ok $user->app, 'Mojolicious::Lite';
+$user = $t->app->model('users')->get(a => 1);
+isa_ok $user->app, 'Mojolicious::Lite';
+
 done_testing;

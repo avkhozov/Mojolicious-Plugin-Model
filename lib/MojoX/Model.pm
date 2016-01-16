@@ -10,7 +10,13 @@ use base 'Mojo::Base';
 __PACKAGE__->attr(app => undef);
 
 sub new {
-  my $self = shift()->SUPER::new(@_);
+  my $class = shift;
+
+  if (ref $class && $class->isa(__PACKAGE__)) {
+    @_ == 1 ? $_[0]->{app} = $class->{app} : push @_, app => $class->{app};
+  }
+
+  my $self = $class->SUPER::new(@_);
   weaken($self->{app}) if ref($self->{app});
   return $self;
 }
