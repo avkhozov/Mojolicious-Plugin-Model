@@ -7,8 +7,6 @@ use Mojo::Util 'camelize';
 
 our $VERSION = '0.05';
 
-has models => sub { {} };
-
 sub register {
   my ($plugin, $app, $conf) = @_;
 
@@ -23,7 +21,7 @@ sub register {
       $name = camelize($name) if $name =~ /^[a-z]/;
 
       my $model;
-      return $model if $model = $plugin->models->{$name};
+      return $model if $model = $plugin->{models}{$name};
 
       for my $class (map { "${_}::$name" } @$ns) {
         next unless _load_class($class);
@@ -35,7 +33,7 @@ sub register {
 
         $model =
           $class->new(ref($conf->{params}{$name}) eq 'HASH' ? %{$conf->{params}{$name}} : (), app => $app);
-        $plugin->models->{$name} = $model;
+        $plugin->{models}{$name} = $model;
         return $model;
       }
 
