@@ -1,6 +1,8 @@
 Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
+    - Added support of using models as general objects, not only as singleton
+      with static methods. (Logioniz)
 
 0.05 2015-08-08T10:16:02Z
     - Added support of model parameters. (dionys, avkhozov)
