@@ -17,7 +17,7 @@ sub new {
   }
 
   my $self = $class->SUPER::new(@_);
-  weaken($self->{app}) if ref($self->{app});
+  weaken $self->{app};
   return $self;
 }
 
