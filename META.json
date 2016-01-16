@@ -4,7 +4,7 @@
       "Andrey Khozov, C<avkhozov@googlemail.com>."
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v2.5.0, CPAN::Meta::Converter version 2.141170",
+   "generated_by" : "Minilla/v3.0.1, CPAN::Meta::Converter version 2.141170",
    "license" : [
       "unknown"
    ],
@@ -58,9 +58,10 @@
          "web" : "https://github.com/avkhozov/Mojolicious-Plugin-Model"
       }
    },
-   "version" : "0.05",
+   "version" : "0.06",
    "x_contributors" : [
       "Denis Ibaev <dionys@gmail.com>",
+      "Logioniz <logioniz@ya.ru>",
       "Andrey Khozov <avkhozov@gmail.com>"
    ]
 }
