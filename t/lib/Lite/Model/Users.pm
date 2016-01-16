@@ -10,8 +10,6 @@ sub check {
   return $allow;
 }
 
-sub name {
-  return $_[1] // 'name';
-}
+sub name { return $_[1] // 'name'; }
 
 1;

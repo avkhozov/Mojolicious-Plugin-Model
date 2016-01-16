@@ -6,8 +6,6 @@ use Test::More;
 
 use Mojolicious::Lite;
 
-my $v;
-
 plugin 'Model' => {namespaces => ['Local'], default => 'MyModel'};
 
 get '/' => sub {
