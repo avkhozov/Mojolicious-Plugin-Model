@@ -4,7 +4,7 @@
       "Andrey Khozov, C<avkhozov@googlemail.com>."
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Minilla/v3.0.1, CPAN::Meta::Converter version 2.141170",
+   "generated_by" : "Minilla/v3.0.1, CPAN::Meta::Converter version 2.150005",
    "license" : [
       "unknown"
    ],
@@ -42,7 +42,8 @@
       },
       "runtime" : {
          "requires" : {
-            "Mojolicious" : "5.80"
+            "Mojolicious" : "5.80",
+            "perl" : "5.010001"
          }
       }
    },
@@ -63,5 +64,6 @@
       "Denis Ibaev <dionys@gmail.com>",
       "Logioniz <logioniz@ya.ru>",
       "Andrey Khozov <avkhozov@gmail.com>"
-   ]
+   ],
+   "x_serialization_backend" : "JSON::PP version 2.27300"
 }
