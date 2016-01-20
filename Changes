@@ -1,6 +1,8 @@
 Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
+
+0.07 2016-01-20T08:57:01Z
     - Added perl version to requirements.
     - Added license to META files.
 
