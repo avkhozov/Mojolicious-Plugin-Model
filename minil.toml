@@ -1,3 +1,5 @@
-name = "Mojolicious-Plugin-Model"
+authority = "cpan:AVKHOZOV"
 badges = ["travis"]
-module_maker="ModuleBuildTiny"
+license = "perl_5"
+module_maker = "ModuleBuildTiny"
+name = "Mojolicious-Plugin-Model"
