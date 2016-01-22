@@ -125,9 +125,10 @@ Parameters to be passed to the class constructor of the model.
 
 ## model
 
-    my $model = $c->model('users');
+    my $model = $c->model($name);
 
-Create and cache a model object with given name.
+Load, create and cache a model object with given name. Default class for
+model `camelize($moniker)::Model`. Return `undef` if model not found.
 
 # METHODS
 

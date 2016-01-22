@@ -185,9 +185,10 @@ L<Mojolicious::Plugin::Model> implements the following helpers.
 
 =head2 model
 
-  my $model = $c->model('users');
+  my $model = $c->model($name);
 
-Create and cache a model object with given name.
+Load, create and cache a model object with given name. Default class for
+model C<camelize($moniker)::Model>. Return C<undef> if model not found.
 
 =head1 METHODS
 
