@@ -1,13 +1,9 @@
 package MojoX::Model;
-
-use strict;
-use warnings;
+use Mojo::Base -base;
 
 use Scalar::Util 'weaken';
 
-use base 'Mojo::Base';
-
-__PACKAGE__->attr(app => undef);
+has 'app';
 
 sub new {
   my $class = shift;
