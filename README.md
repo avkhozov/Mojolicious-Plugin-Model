@@ -151,6 +151,8 @@ Andrey Khozov, `avkhozov@googlemail.com`.
 
 # CONTRIBUTORS
 
+Alexey Stavrov, `logioniz@ya.ru`.
+
 Denis Ibaev, `dionys@gmail.com`.
 
 # COPYRIGHT AND LICENSE
