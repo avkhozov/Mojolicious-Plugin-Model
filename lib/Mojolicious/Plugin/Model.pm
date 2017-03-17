@@ -5,7 +5,7 @@ use List::Util 'first';
 use Mojo::Loader ();
 use Mojo::Util 'camelize';
 
-our $VERSION = '0.07';
+our $VERSION = '0.08';
 
 sub register {
   my ($plugin, $app, $conf) = @_;
@@ -15,7 +15,7 @@ sub register {
 
   $app->helper(
     model => sub {
-      my ($self, $name) = @_;
+      my ($self, $name) = (shift, shift);
 
       $name = $conf->{default} unless defined $name;
       $name = camelize($name) if $name =~ /^[a-z]/;
@@ -32,7 +32,7 @@ sub register {
         }
 
         my $params = $conf->{params}{$name};
-        $model = $class->new(ref $params eq 'HASH' ? %$params : (), app => $app);
+        $model = $class->new(ref $params eq 'HASH' ? %$params : (), app => $app, @_);
         $plugin->{models}{$name} = $model;
         return $model;
       }
@@ -215,9 +215,11 @@ Alexey Stavrov, C<logioniz@ya.ru>.
 
 Denis Ibaev, C<dionys@gmail.com>.
 
+Eugen Konkov, C<kes-kes@yandex.ru>.
+
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2015, Andrey Khozov.
+Copyright (C) 2017, Andrey Khozov.
 
 This program is free software, you can redistribute it and/or modify it under
 the terms of the Artistic License version 2.0.

@@ -2,6 +2,7 @@ Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
     - Improved documentation.
+    - Added support for passing extra args to model constructor.
 
 0.07 2016-01-20T08:57:01Z
     - Added perl version to requirements.
