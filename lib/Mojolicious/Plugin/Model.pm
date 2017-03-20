@@ -5,7 +5,7 @@ use List::Util 'first';
 use Mojo::Loader ();
 use Mojo::Util 'camelize';
 
-our $VERSION = '0.08';
+our $VERSION = '0.09';
 
 sub register {
   my ($plugin, $app, $conf) = @_;

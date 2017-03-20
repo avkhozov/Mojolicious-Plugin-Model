@@ -59,7 +59,7 @@
          "web" : "https://github.com/avkhozov/Mojolicious-Plugin-Model"
       }
    },
-   "version" : "0.08",
+   "version" : "0.09",
    "x_authority" : "cpan:AVKHOZOV",
    "x_contributors" : [
       "Denis Ibaev <dionys@gmail.com>",
