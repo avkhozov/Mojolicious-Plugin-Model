@@ -15,7 +15,7 @@ sub register {
 
   $app->helper(
     model => sub {
-      my ($self, $name) = (shift, shift);
+      my ($self, $name) = @_;
 
       $name = $conf->{default} unless defined $name;
       $name = camelize($name) if $name =~ /^[a-z]/;
@@ -32,7 +32,7 @@ sub register {
         }
 
         my $params = $conf->{params}{$name};
-        $model = $class->new(ref $params eq 'HASH' ? %$params : (), app => $app, @_);
+        $model = $class->new(ref $params eq 'HASH' ? %$params : (), app => $app);
         $plugin->{models}{$name} = $model;
         return $model;
       }

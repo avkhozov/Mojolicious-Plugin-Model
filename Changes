@@ -1,6 +1,7 @@
 Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
+    - Revert support for passing extra args to model constructor.
 
 0.08 2017-03-17T11:54:26Z
     - Improved documentation.
