@@ -42,6 +42,7 @@
       },
       "runtime" : {
          "requires" : {
+            "List::Util" : "1.33",
             "Mojolicious" : "5.80",
             "perl" : "5.010001"
          }
@@ -59,7 +60,7 @@
          "web" : "https://github.com/avkhozov/Mojolicious-Plugin-Model"
       }
    },
-   "version" : "0.10",
+   "version" : "0.11",
    "x_authority" : "cpan:AVKHOZOV",
    "x_contributors" : [
       "Andrey Khozov <avkhozov@gmail.com>",
