@@ -21,7 +21,7 @@ Model Users
 
       # Or HTTP check
       return $self->app->ua->post($url => json => {user => $name, pass => $pass})
-        ->rex->tx->json('/result');
+        ->res->tx->json('/result');
     }
 
     1;
