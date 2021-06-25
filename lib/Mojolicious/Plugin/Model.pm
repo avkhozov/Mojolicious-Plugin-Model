@@ -10,6 +10,10 @@ our $VERSION = '0.11';
 sub register {
   my ($plugin, $app, $conf) = @_;
 
+  # check if need camelize moniker
+  my $path = $app->home . '/lib/' . $app->moniker;
+  $app->moniker(camelize($app->moniker)) unless -d $path;
+
   $app->helper(
     model => sub {
       my ($self, $name) = @_;
@@ -57,7 +61,7 @@ sub _load_class_for_name {
   my ($plugin, $app, $conf, $name) = @_;
   return $plugin->{classes_loaded}{$name} if $plugin->{classes_loaded}{$name};
 
-  my $ns   = $conf->{namespaces}   // [camelize($app->moniker) . '::Model'];
+  my $ns   = $conf->{namespaces}   // [$app->moniker . '::Model'];
   my $base = $conf->{base_classes} // [qw(MojoX::Model)];
 
   $name = camelize($name) if $name =~ /^[a-z]/;
