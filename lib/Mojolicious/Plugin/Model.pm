@@ -12,7 +12,7 @@ sub register {
 
   # check if need camelize moniker
   my $path = $app->home . '/lib/' . $app->moniker;
-  $app->moniker(camelize($app->moniker)) unless -d $path;
+  my $moniker = -d $path ? $app->moniker : camelize($app->moniker);
 
   $app->helper(
     model => sub {
@@ -22,7 +22,7 @@ sub register {
       my $model;
       return $model if $model = $plugin->{models}{$name};
 
-      my $class = _load_class_for_name($plugin, $app, $conf, $name)
+      my $class = _load_class_for_name($plugin, $app, $conf, $name, $moniker)
         or return undef;
 
       my $params = $conf->{params}{$name};
@@ -37,7 +37,7 @@ sub register {
       my ($self, $name) = @_;
       $name //= $conf->{default};
 
-      my $class = _load_class_for_name($plugin, $app, $conf, $name)
+      my $class = _load_class_for_name($plugin, $app, $conf, $name, $moniker)
         or return undef;
 
       my $params = $conf->{params}{$name};
@@ -58,10 +58,10 @@ sub _load_class {
 }
 
 sub _load_class_for_name {
-  my ($plugin, $app, $conf, $name) = @_;
+  my ($plugin, $app, $conf, $name, $moniker) = @_;
   return $plugin->{classes_loaded}{$name} if $plugin->{classes_loaded}{$name};
 
-  my $ns   = $conf->{namespaces}   // [$app->moniker . '::Model'];
+  my $ns   = $conf->{namespaces}   // [$moniker . '::Model'];
   my $base = $conf->{base_classes} // [qw(MojoX::Model)];
 
   $name = camelize($name) if $name =~ /^[a-z]/;
