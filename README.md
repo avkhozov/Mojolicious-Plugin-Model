@@ -1,4 +1,3 @@
-[![Build Status](https://travis-ci.org/avkhozov/Mojolicious-Plugin-Model.svg?branch=master)](https://travis-ci.org/avkhozov/Mojolicious-Plugin-Model)
 # NAME
 
 Mojolicious::Plugin::Model - Model for Mojolicious applications
