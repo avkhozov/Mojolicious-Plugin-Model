@@ -11,8 +11,8 @@ sub register {
   my ($plugin, $app, $conf) = @_;
 
   # check if need camelize moniker
-  my $path = $app->home . '/lib/' . $app->moniker;
-  my $moniker = -d $path ? $app->moniker : camelize($app->moniker);
+  my $moniker = camelize($app->moniker);
+  $moniker    = $app->moniker unless -d $app->home . '/lib/' . $moniker;
 
   $app->helper(
     model => sub {
