@@ -2,6 +2,10 @@ Revision history for Perl extension Mojolicious-Plugin-Model
 
 {{$NEXT}}
 
+0.13 2021-07-12T15:34:48Z
+
+    - Fixed detection of default namespaces for windows. (lucas1)
+
 0.12 2021-07-11T08:20:12Z
 
     - Improved detection of default namespaces. (lucas1)
